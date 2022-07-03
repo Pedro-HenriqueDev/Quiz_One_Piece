@@ -55,13 +55,19 @@ function limparBotoes() {
 }
 
 // escreve a pergunta
-
+function bloqueiaBotoes() {
+    buttons[0].removeEventListener('click', errou)
+    buttons[1].removeEventListener('click', errou)
+    buttons[2].removeEventListener('click', errou)
+    buttons[3].removeEventListener('click', errou)
+}
 //verifica as respostas nos botões
 
 function acertou() {
     this.style.background = '#00ff4c'
     this.style.color = '#000'
 
+    bloqueiaBotoes()
     setTimeout( () =>{
     this.style.background = '#121615'
     this.style.color = '#eeeeee'
@@ -77,7 +83,8 @@ function acertou() {
 }
 function errou() {
     this.style.background = '#8a0808'
-
+    
+    limparBotoes()
     setTimeout( () =>{
             div_botoes.style.display = 'none'
             paragrafo.style.display = 'none'
