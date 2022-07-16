@@ -1,18 +1,23 @@
-// Selecionar as variaveis
+// Variáveis Construtoras
 const paragrafo = document.querySelector('.paragrafo')
 let buttons = document.querySelectorAll('.btn')
 const div_title = document.querySelector('.div-title')
 
-// style
 const div_end = document.querySelector('.end')
 const img_final = document.querySelector('.end_img')
 const title_final = document.querySelector('.end_title')
 const div_botoes = document.querySelector('.container_btn')
 
-function escreverQuestoes() {
+// Loop De perguntas
+function escolheQuestao() {
+    let contador = perguntas.length - 1
+    let aleat = Math.round(Math.random() * contador)
+    let questao = perguntas.at(aleat)
+    escreverQuestoes(questao)
+}
+escolheQuestao()
+function escreverQuestoes(questao) {
     
-    let questao = perguntas.at(0)
-
     paragrafo.innerHTML = questao.pergunta
 
     buttons[0].innerHTML = questao.a
@@ -20,13 +25,10 @@ function escreverQuestoes() {
     buttons[2].innerHTML = questao.c
     buttons[3].innerHTML = questao.d
 
-    return questao
+    verificaBotoes(questao)
 }
-verificaBotoes(escreverQuestoes())
-
 function verificaBotoes(questao) {
         limparBotoes()
-
         if(buttons[0].innerHTML === questao.correto) {
             buttons[0].removeEventListener('click', errou)
             buttons[0].addEventListener('click', acertou)
@@ -40,8 +42,11 @@ function verificaBotoes(questao) {
             buttons[3].removeEventListener('click', errou)
             buttons[3].addEventListener('click', acertou)
         }
-    }
+        
+}
+// Fim do Loop
 
+// Funções Corretoras
 function limparBotoes() {
         buttons[0].removeEventListener('click', acertou)
         buttons[1].removeEventListener('click', acertou)
@@ -54,31 +59,35 @@ function limparBotoes() {
         buttons[3].addEventListener('click', errou)
 }
 
-// escreve a pergunta
 function bloqueiaBotoes() {
     buttons[0].removeEventListener('click', errou)
     buttons[1].removeEventListener('click', errou)
     buttons[2].removeEventListener('click', errou)
     buttons[3].removeEventListener('click', errou)
 }
-//verifica as respostas nos botões
 
+// Funçoes addEventListener
 function acertou() {
     this.style.background = '#00ff4c'
     this.style.color = '#000'
 
+    let par = this.textContent
+    console.log(perguntas)
     bloqueiaBotoes()
     setTimeout( () =>{
     this.style.background = '#121615'
     this.style.color = '#eeeeee'
     
-    perguntas.splice(0,1)    
+      
+    let questaoRemovida = perguntas.findIndex(elem => elem.correto == par)
+
+    perguntas.splice(questaoRemovida, 1)
 
     if(perguntas.length === 0){
         terminou()
     }
         
-    verificaBotoes(escreverQuestoes())
+    escolheQuestao()
     }, 1000)
 }
 function errou() {
@@ -96,6 +105,8 @@ function errou() {
     }, 1000)
     
 }  
+
+// Fim de Jogo
 function terminou() {
     div_botoes.style.display = 'none'
     paragrafo.style.display = 'none'
