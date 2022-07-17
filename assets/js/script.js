@@ -29,6 +29,7 @@ function escreverQuestoes(questao) {
 }
 function verificaBotoes(questao) {
         limparBotoes()
+
         if(buttons[0].innerHTML === questao.correto) {
             buttons[0].removeEventListener('click', errou)
             buttons[0].addEventListener('click', acertou)
@@ -42,28 +43,22 @@ function verificaBotoes(questao) {
             buttons[3].removeEventListener('click', errou)
             buttons[3].addEventListener('click', acertou)
         }
-        
 }
 // Fim do Loop
 
 // Funções Corretoras
 function limparBotoes() {
-        buttons[0].removeEventListener('click', acertou)
-        buttons[1].removeEventListener('click', acertou)
-        buttons[2].removeEventListener('click', acertou)
-        buttons[3].removeEventListener('click', acertou)
+    buttons.forEach(elem => {
 
-        buttons[0].addEventListener('click', errou)
-        buttons[1].addEventListener('click', errou)
-        buttons[2].addEventListener('click', errou)
-        buttons[3].addEventListener('click', errou)
+        elem.removeEventListener('click', acertou)
+        elem.addEventListener('click', errou)
+    })
 }
 
 function bloqueiaBotoes() {
-    buttons[0].removeEventListener('click', errou)
-    buttons[1].removeEventListener('click', errou)
-    buttons[2].removeEventListener('click', errou)
-    buttons[3].removeEventListener('click', errou)
+    buttons.forEach(elem => {
+        elem.removeEventListener('click', errou)
+    })
 }
 
 // Funçoes addEventListener
@@ -77,16 +72,19 @@ function acertou() {
     setTimeout( () =>{
     this.style.background = '#121615'
     this.style.color = '#eeeeee'
-    
-      
+
     let questaoRemovida = perguntas.findIndex(elem => elem.correto == par)
 
-    perguntas.splice(questaoRemovida, 1)
+    if(questaoRemovida === -1) {
+        perguntas.splice(questaoRemovida, 0)
+    } else {
+        perguntas.splice(questaoRemovida, 1)
+    }    
 
-    if(perguntas.length === 0){
+    if(perguntas.length == 0){
         terminou()
     }
-        
+
     escolheQuestao()
     }, 1000)
 }

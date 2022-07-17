@@ -24,7 +24,7 @@ body {
   align-items: center;
 }
 #container .div-title {
-  margin: 70px;
+  margin: 50px;
 }
 #container .container_btn {
   display: flex;
@@ -126,4 +126,9 @@ div {
 .end .end.title {
   margin-top: 40px;
   font-size: 32px;
+}
+
+.time {
+  color: #121615;
+  font-size: 45px;
 }/*# sourceMappingURL=style.css.map */
