@@ -6,7 +6,7 @@ tanto de perguntas como nas respostas nos botões...
  
  <h4>Atualizações</h4>
 <ul>
-   <li>Aleatoriedade de questões</li>
+   <li>Aleatoriedade de questões incluída</li>
 </ul>
 
  🚧Em construção🚧
