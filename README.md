@@ -6,7 +6,7 @@ tanto de perguntas como nas respostas nos botões...
  
  <h4>Atualizações:</h4>
 <ul>
-   <li>Aleatoriedade de questões incluída</li>
+   <li>Aleatoriedade na escolha de questões</li>
    <li>Tempo para responder questões</li>
 </ul>
 
