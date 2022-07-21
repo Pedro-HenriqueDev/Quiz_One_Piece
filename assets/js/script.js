@@ -7,6 +7,22 @@ const div_end = document.querySelector('.end')
 const img_final = document.querySelector('.end_img')
 const title_final = document.querySelector('.end_title')
 const div_botoes = document.querySelector('.container_btn')
+const bar_time = document.querySelector('.bar_time')
+const timer = document.querySelector('.countdown')
+
+// timer
+let time = 16
+    
+    setInterval(function tempo() {
+        if(perguntas.length == 0){
+            timer.innerHTML = 'Acabou!'
+        } else if(time == 0) {
+            perdeu()
+        } else {
+            time--
+            bar_time.style.animationName = 'timer'
+        }
+    }, 1000)
 
 // Loop De perguntas
 function escolheQuestao() {
@@ -14,6 +30,8 @@ function escolheQuestao() {
     let aleat = Math.round(Math.random() * contador)
     let questao = perguntas.at(aleat)
     escreverQuestoes(questao)
+
+    tempo()
 }
 escolheQuestao()
 function escreverQuestoes(questao) {
@@ -24,6 +42,7 @@ function escreverQuestoes(questao) {
     buttons[1].innerHTML = questao.b
     buttons[2].innerHTML = questao.c
     buttons[3].innerHTML = questao.d
+    
 
     verificaBotoes(questao)
 }
@@ -63,6 +82,7 @@ function bloqueiaBotoes() {
 
 // Funçoes addEventListener
 function acertou() {
+    
     this.style.background = '#00ff4c'
     this.style.color = '#000'
 
@@ -76,15 +96,16 @@ function acertou() {
     let questaoRemovida = perguntas.findIndex(elem => elem.correto == par)
 
     if(questaoRemovida === -1) {
-        perguntas.splice(questaoRemovida, 0)
+        perguntas.splice(0, 0)
     } else {
         perguntas.splice(questaoRemovida, 1)
     }    
 
+    time = 16
+    bar_time.style.animationName = ''
     if(perguntas.length == 0){
         terminou()
     }
-
     escolheQuestao()
     }, 1000)
 }
@@ -92,17 +113,19 @@ function errou() {
     this.style.background = '#8a0808'
     
     limparBotoes()
-    setTimeout( () =>{
-            div_botoes.style.display = 'none'
-            paragrafo.style.display = 'none'
-            div_end.style.display = 'flex'
-
-            img_final.style.width = '250px'
-            title_final.innerHTML = 'Você perdeu!'
-            img_final.src = './assets/img/luffy_sad.png'
-    }, 1000)
-    
+    setTimeout(perdeu, 1000)
 }  
+function perdeu() {
+    div_botoes.style.display = 'none'
+    paragrafo.style.display = 'none'
+    div_end.style.display = 'flex'
+
+    img_final.style.width = '250px'
+    img_final.style.marginBottom = '10px'
+    title_final.innerHTML = 'Você perdeu!'
+    title_final.style.marginBottom = '10px'
+    img_final.src = './assets/img/luffy_sad.png'
+}
 
 // Fim de Jogo
 function terminou() {
@@ -116,4 +139,6 @@ function terminou() {
     title_final.innerHTML = 'Você será o Rei dos Piratas!'
     title_final.style.margin = '30px'
     img_final.src = './assets/img/luffy.png' 
+
+    
 }

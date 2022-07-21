@@ -14,6 +14,47 @@ body {
     background-size: 100%;
     backdrop-filter: blur(5px);
 }
+.countdown {
+    display: flex;
+    justify-content: flex-end;
+    width: auto;
+    height: 30px;
+    font-size: 32px;
+    color: #121615;
+    padding: 10px;
+}
+.div_bar_time {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  
+    .bar_time {
+        display: flex;
+        width: 90%;
+        height: 5px;
+        margin-top: 3px;
+        background-color: hsl(143, 79%, 43%);
+        border-radius: 5px;
+        animation: 15s alternate forwards ease-out;
+    }
+}
+@keyframes timer {
+    0% {
+        width: 90%;
+        background-color: hsl(143, 79%, 43%);
+    }
+    70% {
+        background-color: hsl(143, 79%, 43%);
+    }
+    75% {
+        background-color: #8a0808;
+    }
+    100% {
+        background-color: #8a0808;
+        width: 0%;
+    }
+}
+
 #container {
     width: 100%;
     height: 100vh;
