@@ -12,4 +12,4 @@ tanto de perguntas como nas respostas nos botões...
 
  🚧Em construção🚧
 
-Link: https://pedro-henriquedev.github.io/Quiz_One_Piece/
+<a href="https://pedro-henriquedev.github.io/Quiz_One_Piece/">Link aqui</a> 
