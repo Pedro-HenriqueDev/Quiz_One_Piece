@@ -31,7 +31,7 @@ function escolheQuestao() {
     let questao = perguntas.at(aleat)
     escreverQuestoes(questao)
 
-    tempo()
+    // tempo()
 }
 escolheQuestao()
 function escreverQuestoes(questao) {
@@ -125,6 +125,7 @@ function perdeu() {
     title_final.innerHTML = 'Você perdeu!'
     title_final.style.marginBottom = '10px'
     img_final.src = './assets/img/luffy_sad.png'
+    bar_time.style.display = 'none'
 }
 
 // Fim de Jogo
