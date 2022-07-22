@@ -12,7 +12,8 @@ const timer = document.querySelector('.countdown')
 
 // timer
 let time = 15
-    
+
+
     setInterval(function tempo() {
         if(perguntas.length == 0){
             timer.innerHTML = 'Acabou!'
@@ -89,23 +90,26 @@ function acertou() {
     let par = this.textContent
     console.log(perguntas)
     bloqueiaBotoes()
+
+
+    
     setTimeout( () =>{
     this.style.background = '#121615'
     this.style.color = '#eeeeee'
 
     let questaoRemovida = perguntas.findIndex(elem => elem.correto == par)
-
+    time = 15
     if(questaoRemovida === -1) {
         perguntas.splice(0, 0)
     } else {
         perguntas.splice(questaoRemovida, 1)
     }    
-
-    time = 15
-    bar_time.style.animationName = ''
     if(perguntas.length == 0){
         terminou()
     }
+
+    time = 15
+    bar_time.style.animationName = ''
     escolheQuestao()
     }, 1000)
 }
