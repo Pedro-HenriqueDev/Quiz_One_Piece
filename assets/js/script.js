@@ -11,7 +11,7 @@ const bar_time = document.querySelector('.bar_time')
 const timer = document.querySelector('.countdown')
 
 // timer
-let time = 16
+let time = 15
     
     setInterval(function tempo() {
         if(perguntas.length == 0){
@@ -101,7 +101,7 @@ function acertou() {
         perguntas.splice(questaoRemovida, 1)
     }    
 
-    time = 16
+    time = 15
     bar_time.style.animationName = ''
     if(perguntas.length == 0){
         terminou()
