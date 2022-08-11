@@ -9,10 +9,9 @@ const title_final = document.querySelector('.end_title')
 const div_botoes = document.querySelector('.container_btn')
 const bar_time = document.querySelector('.bar_time')
 const timer = document.querySelector('.countdown')
+const progresso = document.querySelector('.numberQuestions')
 
-// timer
 let time = 15
-
 
     setInterval(function tempo() {
         if(perguntas.length == 0){
@@ -25,6 +24,10 @@ let time = 15
         }
     }, 1000)
 
+const showQuestionsCurrent = ()=> {
+    let questionsCurrent = 10 - perguntas.length
+    progresso.innerHTML = `${questionsCurrent} de 10`
+}
 // Loop De perguntas
 function escolheQuestao() {
     let contador = perguntas.length - 1
@@ -44,7 +47,7 @@ function escreverQuestoes(questao) {
     buttons[2].innerHTML = questao.c
     buttons[3].innerHTML = questao.d
     
-
+    showQuestionsCurrent()
     verificaBotoes(questao)
 }
 function verificaBotoes(questao) {
@@ -90,13 +93,11 @@ function acertou() {
     let par = this.textContent
     console.log(perguntas)
     bloqueiaBotoes()
-
-
-    
+  
     setTimeout( () =>{
     this.style.background = '#121615'
     this.style.color = '#eeeeee'
-
+    
     let questaoRemovida = perguntas.findIndex(elem => elem.correto == par)
     time = 15
     if(questaoRemovida === -1) {
@@ -107,7 +108,6 @@ function acertou() {
     if(perguntas.length == 0){
         terminou()
     }
-
     time = 15
     bar_time.style.animationName = ''
     escolheQuestao()
